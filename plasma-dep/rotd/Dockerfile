@@ -15,7 +15,6 @@ RUN ./install.sh \
 # Install some Plasma build dependencies.  We will test with both gcc and
 # clang so install both.
 RUN ./install.sh \
-    asciidoc \
     ctags \
     gcc \
     g++ \
