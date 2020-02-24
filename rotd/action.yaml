@@ -4,6 +4,9 @@ inputs:
   makeTarget:
     description: Which Plasma Makefile target to execute
     required: true
+  c:
+    description: The C compiler to use (gcc or clang)
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
