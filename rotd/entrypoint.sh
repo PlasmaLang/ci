@@ -24,6 +24,7 @@ $CC --version
 echo
 
 cat > build.mk << END
+JOBS=2
 CC=$CC
 CXX=$CXX
 END
