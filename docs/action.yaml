@@ -1,0 +1,11 @@
+name: 'Build Plasma in Github CI'
+description: 'Scripts and tools to build and test Plasma'
+inputs:
+  makeTarget:
+    description: Which Plasma Makefile target to execute
+    default: docs
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
