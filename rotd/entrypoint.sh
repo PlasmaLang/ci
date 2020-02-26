@@ -20,7 +20,14 @@ case "$INPUT_C" in
 esac
 
 echo C compiler
+echo ----------
 $CC --version
+echo
+
+echo Mercury compiler
+echo ----------------
+mmc --version
+echo MCFLAGS is $MCFLAGS
 echo
 
 cat > build.mk << END
@@ -34,5 +41,5 @@ cat build.mk
 echo
 
 export CI=true
-exec make $INPUT_MAKETARGET 
+exec make $INPUT_MAKETARGET
 
