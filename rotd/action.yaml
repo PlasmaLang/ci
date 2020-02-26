@@ -7,6 +7,9 @@ inputs:
   c:
     description: The C compiler to use (gcc or clang)
     required: true
+  buildType:
+    description: Whether to perform a release or development build, takes the value 'rel' or 'dev'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
