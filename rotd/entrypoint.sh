@@ -66,6 +66,10 @@ END
     test)
         exec make test
         ;;
+    gctest)
+        cd tests
+        exec ./run_tests.sh gc
+        ;;
     extra)
         exec make tags
         ;;
