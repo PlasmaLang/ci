@@ -6,12 +6,10 @@ case "$INPUT_C" in
     gcc)
         CC=gcc
         CXX=g++
-        break
         ;;
     clang)
         CC=clang
         CXX=clang++
-        break
         ;;
     *)
         echo "Unknown C compiler $INPUT_C"
@@ -22,18 +20,15 @@ esac
 BUILD_TYPE=$INPUT_BUILDTYPE
 case "$INPUT_BUILDTYPE" in
     dev)
-        C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O1 -DDEBUG -DPZ_DEV';
-        MCFLAGS="-O1";
-        break;
+        C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O1 -DDEBUG -DPZ_DEV'
+        MCFLAGS="-O1"
         ;;
     rel)
-        C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O3';
-        MCFLAGS="-O4 --intermodule-optimisation";
-        break;
+        C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O3'
+        MCFLAGS="-O4 --intermodule-optimisation"
         ;;
     *)
-        echo "Unknown build type $INPUT_BUILDTYPE";
-        exit 1;
+        echo "Unknown build type $INPUT_BUILDTYPE"
         ;;
 esac
 
