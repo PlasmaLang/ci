@@ -10,6 +10,9 @@ inputs:
   buildType:
     description: Whether to perform a release or development build, takes the value 'rel' or 'dev'
     required: false
+  lint:
+    description: Optionally pass 'lint' to enable -Wall -Werror builds
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

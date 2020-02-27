@@ -35,6 +35,13 @@ case "$INPUT_COMMAND" in
                 ;;
         esac
 
+        case "$INPUT_LINT" in
+            lint)
+                C_CXX_FLAGS="$C_CXX_FLAGS -Wall -Werror"
+                # TODO: Add -Werror for Mercury after we upgrade to stable.
+                ;;
+        esac
+
         echo C compiler
         echo ----------
         $CC --version
