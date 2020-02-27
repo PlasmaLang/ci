@@ -2,47 +2,50 @@
 
 echo Build script running.
 
-case "$INPUT_C" in
-    gcc)
-        CC=gcc
-        CXX=g++
-        ;;
-    clang)
-        CC=clang
-        CXX=clang++
-        ;;
-    *)
-        echo "Unknown C compiler $INPUT_C"
-        exit 1
-        ;;
-esac
+export CI=true
+case "$INPUT_COMMAND" in
+    setup)
+        case "$INPUT_C" in
+            gcc)
+                CC=gcc
+                CXX=g++
+                ;;
+            clang)
+                CC=clang
+                CXX=clang++
+                ;;
+            *)
+                echo "Unknown C compiler $INPUT_C"
+                exit 1
+                ;;
+        esac
 
-BUILD_TYPE=$INPUT_BUILDTYPE
-case "$INPUT_BUILDTYPE" in
-    dev)
-        C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O1 -DDEBUG -DPZ_DEV'
-        MCFLAGS="-O1"
-        ;;
-    rel)
-        C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O3'
-        MCFLAGS="-O4 --intermodule-optimisation"
-        ;;
-    *)
-        echo "Unknown build type $INPUT_BUILDTYPE"
-        ;;
-esac
+        BUILD_TYPE=$INPUT_BUILDTYPE
+        case "$INPUT_BUILDTYPE" in
+            dev)
+                C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O1 -DDEBUG -DPZ_DEV'
+                MCFLAGS="-O1"
+                ;;
+            rel)
+                C_CXX_FLAGS='$(C_CXX_FLAGS_BASE) -O3'
+                MCFLAGS="-O4 --intermodule-optimisation"
+                ;;
+            *)
+                echo "Unknown build type $INPUT_BUILDTYPE"
+                ;;
+        esac
 
-echo C compiler
-echo ----------
-$CC --version
-echo C_CXX_FLAGS is $C_CXX_FLAGS
-echo
+        echo C compiler
+        echo ----------
+        $CC --version
+        echo C_CXX_FLAGS is $C_CXX_FLAGS
+        echo
 
-echo Mercury compiler
-echo ----------------
-mmc --version
-echo MCFLAGS is $MCFLAGS
-echo
+        echo Mercury compiler
+        echo ----------------
+        mmc --version
+        echo MCFLAGS is $MCFLAGS
+        echo
 
 cat > build.mk << END
 JOBS=2
@@ -53,10 +56,22 @@ MCFLAGS=$MCFLAGS
 BUILD_TYPE=$BUILD_TYPE
 END
 
-echo build.mk:
-cat build.mk
-echo
-
-export CI=true
-exec make $INPUT_MAKETARGET
+        echo build.mk:
+        cat build.mk
+        echo
+        ;;
+    build)
+        exec make progs
+        ;;
+    test)
+        exec make test
+        ;;
+    extra)
+        exec make tags
+        ;;
+    *)
+        echo "Unknown command"
+        exit 1
+        ;;
+esac
 

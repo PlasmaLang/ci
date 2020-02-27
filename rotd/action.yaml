@@ -1,15 +1,15 @@
 name: 'Build Plasma in Github CI'
 description: 'Scripts and tools to build and test Plasma'
 inputs:
-  makeTarget:
-    description: Which Plasma Makefile target to execute
+  command:
+    description: The action to perform 'setup' to write a build.mk file, or build, test, extra to run those actions. See entrypoint.sh.
     required: true
   c:
     description: The C compiler to use (gcc or clang)
-    required: true
+    required: false
   buildType:
     description: Whether to perform a release or development build, takes the value 'rel' or 'dev'
-    required: true
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
