@@ -1,4 +1,4 @@
-FROM paulbone/plasma-dep:stable
+FROM paulbone/plasma-ci-dep:stable
 
 WORKDIR /tmp
 COPY entrypoint.sh .
