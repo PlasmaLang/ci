@@ -19,7 +19,6 @@ RUN ./install.sh \
     gcc \
     g++ \
     clang \
-    git \
     make
 
 RUN ./install.sh gnupg

@@ -7,7 +7,6 @@ COPY install.sh .
 # clang so install both.
 RUN ./install.sh \
     asciidoc \
-    git \
     make \
     source-highlight
 
