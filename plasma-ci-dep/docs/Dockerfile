@@ -1,4 +1,5 @@
 FROM debian:buster
+RUN apt-get update; apt-get upgrade -yq
 
 WORKDIR /tmp
 COPY install.sh .
