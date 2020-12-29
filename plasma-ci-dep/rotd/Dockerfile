@@ -40,3 +40,10 @@ RUN ./install.sh \
     clang \
     make
 
+ADD https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip /tmp/ninja.zip
+
+RUN ./install.sh unzip; \
+    unzip /tmp/ninja.zip; \
+    mv /tmp/ninja /usr/local/bin/; \
+    apt-get -yq remove unzip
+
