@@ -3,6 +3,9 @@
 echo Build script running.
 
 export CI=true
+JOBS=$(if X=$(nproc 2>&1); then echo $X; else echo 1; fi)
+export MAKEFLAGS="-j$JOBS"
+
 case "$INPUT_COMMAND" in
     setup)
         case "$INPUT_C" in
@@ -54,8 +57,14 @@ case "$INPUT_COMMAND" in
         echo MCFLAGS is $MCFLAGS
         echo
 
+        echo Other
+        echo -----
+        echo JOBS is $JOBS
+        echo MAKEFLAGS is $MAKEFLAGS
+        echo
+
 cat > build.mk << END
-JOBS=2
+JOBS=$JOBS
 CC=$CC
 CXX=$CXX
 C_CXX_FLAGS=$C_CXX_FLAGS
