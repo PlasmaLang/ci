@@ -38,7 +38,12 @@ RUN ./install.sh \
     gcc \
     g++ \
     clang \
-    make
+    make \
+    lua5.3 \
+    lua-filesystem \
+    lua-posix \
+    tappy \
+    diffutils
 
 ADD https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip /tmp/ninja.zip
 
