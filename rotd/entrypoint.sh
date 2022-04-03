@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo Build script running.
 
 export CI=true
