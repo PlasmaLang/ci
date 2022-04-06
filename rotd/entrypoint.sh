@@ -77,15 +77,26 @@ END
         echo build.mk:
         cat build.mk
         echo
+
+cat > build.sh << END
+export BUILD_TYPE=$BUILD_TYPE
+END
+        chmod a+x build.sh
         ;;
     build)
         exec make progs
         ;;
     test)
-        exec make test
+        # New tests
+        . ./build.sh
+        ./tests/run-tests.lua examples tests
+
+        # Old tests
+        cd tests-old
+        exec ./run_tests.sh $BUILD_TYPE
         ;;
     gctest)
-        cd tests
+        cd tests-old
         exec ./run_tests.sh gc
         ;;
     extra)
